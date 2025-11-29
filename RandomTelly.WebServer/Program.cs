@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using RandomTelly.RCL.Core.Services;
+using RandomTelly.WebServer.Data;
 using RandomTelly.WebServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=randomtelly.db"));
 builder.Services.AddScoped<IPlaylistService, PlaylistService>();
 
 var app = builder.Build();
+
+// Ensure database is created
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

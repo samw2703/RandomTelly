@@ -11,4 +11,5 @@ public interface IPlaylistService
 {
     Task<IEnumerable<Playlist>> GetAll();
     Task<Playlist> Save(Playlist playlist);
+    Task Delete(int id);
 }

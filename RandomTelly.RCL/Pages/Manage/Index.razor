@@ -1,18 +1,78 @@
 ﻿@page "/manage"
 
-<h3>Manage</h3>
+<h3>Manage Playlists</h3>
 
-@* 
-    COPILOT TODO:
-    add a list of playlists with options to create, edit, and delete playlists
-*@
+<div class="mb-3">
+    <h4>@(editingPlaylist.Id > 0 ? "Edit Playlist" : "Create New Playlist")</h4>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Playlist name" @bind="editingPlaylist.Name" />
+        <button class="btn btn-primary" @onclick="SavePlaylist">Save</button>
+        @if (editingPlaylist.Id > 0)
+        {
+            <button class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+        }
+    </div>
+</div>
+
+<h4>Playlists</h4>
+@if (Playlists.Count == 0)
+{
+    <p>No playlists found. Create one above!</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var playlist in Playlists)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @playlist.Name
+                <div>
+                    <button class="btn btn-sm btn-outline-primary me-2" @onclick="() => EditPlaylist(playlist)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeletePlaylist(playlist.Id)">Delete</button>
+                </div>
+            </li>
+        }
+    </ul>
+}
 
 @code {
     List<Playlist> Playlists = new();
+    Playlist editingPlaylist = new();
 
     protected override async Task OnInitializedAsync()
     {
-        Playlists = (await PlaylistService.GetAll()).ToList();
+        await LoadPlaylists();
         await base.OnInitializedAsync();
+    }
+
+    private async Task LoadPlaylists()
+    {
+        Playlists = (await PlaylistService.GetAll()).ToList();
+    }
+
+    private async Task SavePlaylist()
+    {
+        if (!string.IsNullOrWhiteSpace(editingPlaylist.Name))
+        {
+            await PlaylistService.Save(editingPlaylist);
+            editingPlaylist = new();
+            await LoadPlaylists();
+        }
+    }
+
+    private void EditPlaylist(Playlist playlist)
+    {
+        editingPlaylist = new Playlist { Id = playlist.Id, Name = playlist.Name };
+    }
+
+    private void CancelEdit()
+    {
+        editingPlaylist = new();
+    }
+
+    private async Task DeletePlaylist(int id)
+    {
+        await PlaylistService.Delete(id);
+        await LoadPlaylists();
     }
 }
