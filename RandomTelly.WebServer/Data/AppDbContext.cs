@@ -9,5 +9,5 @@ internal class AppDbContext : DbContext
     {
     }
 
-    public DbSet<Playlist> Playlists { get; set; }
+    public DbSet<Playlist> Playlists { get; set; } = null!;
 }

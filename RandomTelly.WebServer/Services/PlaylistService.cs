@@ -21,13 +21,15 @@ internal class PlaylistService : IPlaylistService
 
     public async Task<Playlist> Save(Playlist playlist)
     {
-        if (playlist.Id == 0)
+        var existingPlaylist = await _dbContext.Playlists.FindAsync(playlist.Id);
+        
+        if (existingPlaylist == null)
         {
             _dbContext.Playlists.Add(playlist);
         }
         else
         {
-            _dbContext.Playlists.Update(playlist);
+            _dbContext.Entry(existingPlaylist).CurrentValues.SetValues(playlist);
         }
         
         await _dbContext.SaveChangesAsync();
