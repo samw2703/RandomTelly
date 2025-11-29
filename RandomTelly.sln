@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomTelly.RCL", "RandomTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomTelly.Web", "RandomTelly.Web\RandomTelly.Web.csproj", "{29E343D0-69E2-469E-BC6A-B39DABA4DDFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomTelly.WebServer", "RandomTelly.WebServer\RandomTelly.WebServer.csproj", "{6BF987E5-D53A-4806-9E15-AD29E09A904B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,8 +43,23 @@ Global
 		{29E343D0-69E2-469E-BC6A-B39DABA4DDFD}.Release|x64.Build.0 = Release|Any CPU
 		{29E343D0-69E2-469E-BC6A-B39DABA4DDFD}.Release|x86.ActiveCfg = Release|Any CPU
 		{29E343D0-69E2-469E-BC6A-B39DABA4DDFD}.Release|x86.Build.0 = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|x64.Build.0 = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Debug|x86.Build.0 = Debug|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|x64.ActiveCfg = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|x64.Build.0 = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|x86.ActiveCfg = Release|Any CPU
+		{6BF987E5-D53A-4806-9E15-AD29E09A904B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3251678B-E77E-4D9E-821A-E7ADC75300B1}
 	EndGlobalSection
 EndGlobal
