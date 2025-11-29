@@ -35,4 +35,14 @@ internal class PlaylistService : IPlaylistService
         await _dbContext.SaveChangesAsync();
         return playlist;
     }
+
+    public async Task Delete(int id)
+    {
+        var playlist = await _dbContext.Playlists.FindAsync(id);
+        if (playlist != null)
+        {
+            _dbContext.Playlists.Remove(playlist);
+            await _dbContext.SaveChangesAsync();
+        }
+    }
 }
